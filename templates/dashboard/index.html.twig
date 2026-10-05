@@ -1,0 +1,160 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        {% include 'sidebar/index.html.twig' %}
+    </aside>
+
+    <main class="dashboard-content">
+
+        <header class="dashboard-header">
+            <h1>Dashboard</h1>
+            <p>Welcome to La Mia Pizzeria.</p>
+        </header>
+
+        <section class="dashboard-overview">
+
+            <article class="dashboard-card">
+                <h2>Welcome to La Mia Pizzeria</h2>
+                <p>
+                    Explore our menu and discover your next favorite pizza.
+                </p>
+            </article>
+
+        </section>
+
+        <section class="quick-actions">
+
+            <header class="section-header">
+                <h2>Quick Actions</h2>
+                <p>Quickly navigate through the website.</p>
+            </header>
+
+            <div class="action-cards">
+
+                <article class="action-card">
+                    <h3>View Home</h3>
+                    <p>Go to the La Mia Pizzeria home page.</p>
+                    <a href="/">Go to Home</a>
+                </article>
+
+                <article class="action-card">
+                    <h3>View Dashboard</h3>
+                    <p>You are currently viewing the dashboard.</p>
+                    <a href="/dashboard">Stay on Dashboard</a>
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<style>
+    .dashboard-header {
+        margin-bottom: 30px;
+    }
+
+    .dashboard-header h1 {
+        margin: 0 0 8px 0;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    .dashboard-header p {
+        margin: 0;
+        color: #a8a8a8;
+    }
+
+    .dashboard-overview {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .dashboard-card {
+        padding: 24px;
+        background-color: #181818;
+        border: 1px solid #292929;
+        border-radius: 10px;
+    }
+
+    .dashboard-card h2 {
+        margin: 0 0 10px 0;
+        color: #ffffff;
+        font-size: 18px;
+    }
+
+    .dashboard-card p {
+        margin: 0;
+        color: #a8a8a8;
+    }
+
+    .quick-actions {
+        margin-top: 30px;
+    }
+
+    .section-header {
+        margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+        margin: 0 0 6px 0;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .section-header p {
+        margin: 0;
+        color: #a8a8a8;
+    }
+
+    .action-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .action-card {
+        padding: 24px;
+        background-color: #181818;
+        border: 1px solid #292929;
+        border-radius: 10px;
+    }
+
+    .action-card h3 {
+        margin: 0 0 10px 0;
+        color: #ffffff;
+        font-size: 17px;
+    }
+
+    .action-card p {
+        margin: 0 0 20px 0;
+        color: #a8a8a8;
+        font-size: 14px;
+    }
+
+    .action-card a {
+        display: inline-block;
+        padding: 9px 14px;
+        background-color: #2a2a2a;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+
+    .action-card a:hover {
+        background-color: #3a3a3a;
+    }
+</style>
+
+{% endblock %}

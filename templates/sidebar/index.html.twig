@@ -1,0 +1,19 @@
+<div class="sidebar-content">
+
+    <h2>LA MIA<br>PIZZERIA</h2>
+
+    <nav class="sidebar-buttons">
+
+        <a href="{{ path('dashboard') }}"
+           class="{{ app.request.attributes.get('_route') == 'dashboard' ? 'active' : '' }}">
+            Dashboard
+        </a>
+
+        <a href="{{ path('app_home') }}"
+           class="{{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }}">
+            Home
+        </a>
+
+    </nav>
+
+</div>

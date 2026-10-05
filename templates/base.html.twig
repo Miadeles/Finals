@@ -2,9 +2,85 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}La Mia Pizzeria{% endblock %}</title>
+
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+
         {% block stylesheets %}
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    background-color: #111111;
+                    font-family: Arial, sans-serif;
+                }
+
+                .dashboard-container {
+                    display: flex;
+                    min-height: 100vh;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #111111;
+                }
+
+                .sidebar {
+                    width: 220px;
+                    min-height: 100vh;
+                    padding: 24px 16px;
+                    box-sizing: border-box;
+                    background-color: #181818;
+                    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.35);
+                }
+
+                .sidebar-content {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .sidebar-content h2 {
+                    margin: 0 0 30px 8px;
+                    color: #ffffff;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 1.2;
+                    letter-spacing: 1px;
+                }
+
+                .sidebar-buttons {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                }
+
+                .sidebar-buttons a {
+                    display: block;
+                    padding: 11px 14px;
+                    text-decoration: none;
+                    color: #b8b8b8;
+                    background-color: transparent;
+                    border-radius: 6px;
+                    font-size: 14px;
+                    transition: background-color 0.2s ease, color 0.2s ease;
+                }
+
+                .sidebar-buttons a:hover {
+                    background-color: #2a2a2a;
+                    color: #ffffff;
+                }
+
+                .sidebar-buttons a.active {
+                    background-color: #2a2a2a;
+                    color: #ffffff;
+                }
+
+                .dashboard-content {
+                    flex: 1;
+                    padding: 40px;
+                    box-sizing: border-box;
+                    background-color: #111111;
+                    color: #ffffff;
+                }
+            </style>
         {% endblock %}
 
         {% block javascripts %}
@@ -13,11 +89,12 @@
 
         {% set frankenphp_hot_reload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
         {% if frankenphp_hot_reload %}
-        <meta name="frankenphp-hot-reload:url" content="{{ frankenphp_hot_reload }}">
-        <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
-        <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
+            <meta name="frankenphp-hot-reload:url" content="{{ frankenphp_hot_reload }}">
+            <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
+            <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
         {% endif %}
     </head>
+
     <body>
         {% block body %}{% endblock %}
     </body>
