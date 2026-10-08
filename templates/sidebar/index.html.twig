@@ -14,6 +14,26 @@
             Home
         </a>
 
+        <a href="{{ path('app_story') }}"
+           class="{{ app.request.attributes.get('_route') == 'app_story' ? 'active' : '' }}">
+            Our Story
+        </a>
+
+        <a href="{{ path('app_menu') }}"
+           class="{{ app.request.attributes.get('_route') == 'app_menu' ? 'active' : '' }}">
+            Menu
+        </a>
+
+        <a href="{{ path('app_contact') }}"
+           class="{{ app.request.attributes.get('_route') == 'app_contact' ? 'active' : '' }}">
+            Contact
+        </a>
+
+        <a href="{{ path('app_cart') }}"
+           class="{{ app.request.attributes.get('_route') == 'app_cart' ? 'active' : '' }}">
+            Cart
+        </a>
+
     </nav>
 
 </div>

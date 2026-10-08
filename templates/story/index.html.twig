@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our Story{% endblock %}
+
+{% block body %}
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        {% include 'sidebar/index.html.twig' %}
+    </aside>
+
+    <main class="dashboard-content">
+
+        <header class="dashboard-header">
+            <h1>Our Story</h1>
+            <p>Discover the story behind La Mia Pizzeria.</p>
+        </header>
+
+
+        <section class="story-section">
+
+            <article class="story-card">
+
+                <h2>About La Mia Pizzeria</h2>
+
+                <p>
+                    La Mia Pizzeria was created with a simple idea:
+                    to bring delicious and satisfying pizza to everyone.
+                </p>
+
+                <p>
+                    We believe that great pizza starts with quality ingredients,
+                    delicious flavors, and a passion for creating something
+                    that people can enjoy together.
+                </p>
+
+            </article>
+
+
+            <article class="story-card">
+
+                <h2>Our Passion for Pizza</h2>
+
+                <p>
+                    From classic favorites like Pepperoni and Margherita
+                    to flavorful creations such as Creamy Spinach,
+                    Hawaiian, and Extravaganzza, our menu offers something
+                    for every pizza lover.
+                </p>
+
+                <p>
+                    Every pizza is prepared with care and made to give
+                    our customers a delicious La Mia Pizzeria experience.
+                </p>
+
+            </article>
+
+
+            <article class="story-card">
+
+                <h2>Our Goal</h2>
+
+                <p>
+                    Our goal is to create a welcoming place where friends
+                    and families can enjoy good food and great pizza together.
+                </p>
+
+                <p>
+                    Whether you are enjoying a classic pizza or creating
+                    your own custom pizza, we want every visit to La Mia
+                    Pizzeria to be memorable.
+                </p>
+
+            </article>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<style>
+
+    .dashboard-header {
+        margin-bottom: 30px;
+    }
+
+    .dashboard-header h1 {
+        margin: 0 0 8px 0;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    .dashboard-header p {
+        margin: 0;
+        color: #a8a8a8;
+    }
+
+
+    .story-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+
+    .story-card {
+        padding: 28px;
+
+        background-color: #181818;
+
+        border: 1px solid #292929;
+
+        border-radius: 10px;
+    }
+
+
+    .story-card h2 {
+        margin: 0 0 15px 0;
+
+        color: #ffffff;
+
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+
+    .story-card p {
+        margin: 0 0 14px 0;
+
+        color: #a8a8a8;
+
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    .story-card p:last-child {
+        margin-bottom: 0;
+    }
+
+</style>
+
+{% endblock %}

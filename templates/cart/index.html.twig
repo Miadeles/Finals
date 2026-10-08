@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block body %}
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        {% include 'sidebar/index.html.twig' %}
+    </aside>
+
+
+    <main class="dashboard-content">
+
+        <header class="dashboard-header">
+
+            <h1>Cart</h1>
+
+            <p>
+                Review your selected pizzas before placing your order.
+            </p>
+
+        </header>
+
+
+        <section class="cart-section">
+
+            <div class="cart-empty">
+
+                <div class="cart-icon">
+                    🛒
+                </div>
+
+                <h2>Your Cart is Empty</h2>
+
+                <p>
+                    You haven't added any pizzas to your cart yet.
+                </p>
+
+                <a href="{{ path('app_menu') }}">
+                    Browse Our Menu
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<style>
+
+/* =========================================
+   HEADER
+========================================= */
+
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    margin: 0 0 8px 0;
+
+    color: #ffffff;
+
+    font-size: 30px;
+
+    font-weight: 600;
+}
+
+.dashboard-header p {
+    margin: 0;
+
+    color: #a8a8a8;
+
+    font-size: 15px;
+}
+
+
+
+/* =========================================
+   CART SECTION
+========================================= */
+
+.cart-section {
+    margin-top: 10px;
+}
+
+
+
+/* =========================================
+   EMPTY CART
+========================================= */
+
+.cart-empty {
+
+    padding: 60px 30px;
+
+    background-color: #181818;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.cart-icon {
+
+    margin-bottom: 15px;
+
+    font-size: 42px;
+}
+
+.cart-empty h2 {
+
+    margin: 0 0 10px 0;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    font-weight: 600;
+}
+
+.cart-empty p {
+
+    margin: 0 0 25px 0;
+
+    color: #a8a8a8;
+
+    font-size: 14px;
+}
+
+.cart-empty a {
+
+    display: inline-block;
+
+    padding: 11px 18px;
+
+    background-color: #2a2a2a;
+
+    border-radius: 6px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.cart-empty a:hover {
+
+    background-color: #3a3a3a;
+}
+
+</style>
+
+{% endblock %}

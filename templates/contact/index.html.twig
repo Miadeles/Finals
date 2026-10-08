@@ -1,0 +1,215 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        {% include 'sidebar/index.html.twig' %}
+    </aside>
+
+    <main class="dashboard-content">
+
+        <header class="dashboard-header">
+            <h1>Contact</h1>
+            <p>Find us and get in touch with La Mia Pizzeria.</p>
+        </header>
+
+
+        <section class="contact-grid">
+
+            <article class="contact-card">
+
+                <h2>Find Us</h2>
+
+                <p>
+                    Visit La Mia Pizzeria and enjoy delicious pizza
+                    made with fresh ingredients.
+                </p>
+
+                <div class="contact-detail">
+                    <strong>Location</strong>
+                    <span>La Mia Pizzeria</span>
+                </div>
+
+                <div class="contact-detail">
+                    <strong>Opening Hours</strong>
+                    <span>Monday - Sunday</span>
+                    <span>10:00 AM - 10:00 PM</span>
+                </div>
+
+            </article>
+
+
+            <article class="contact-card">
+
+                <h2>Get In Touch</h2>
+
+                <p>
+                    Have a question or want to know more about our pizzas?
+                    Feel free to contact us.
+                </p>
+
+                <div class="contact-detail">
+                    <strong>Email</strong>
+                    <span>lamia.pizzeria@example.com</span>
+                </div>
+
+                <div class="contact-detail">
+                    <strong>Phone</strong>
+                    <span>+63 900 000 0000</span>
+                </div>
+
+            </article>
+
+
+            <article class="contact-card contact-message-card">
+
+                <h2>Visit La Mia Pizzeria</h2>
+
+                <p>
+                    Whether you're craving a classic Pepperoni,
+                    a Margherita, or one of our specialty pizzas,
+                    we're ready to serve you.
+                </p>
+
+                <a href="{{ path('app_menu') }}" class="contact-menu-button">
+                    View Our Menu
+                </a>
+
+            </article>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<style>
+
+    .dashboard-header {
+        margin-bottom: 30px;
+    }
+
+    .dashboard-header h1 {
+        margin: 0 0 8px 0;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    .dashboard-header p {
+        margin: 0;
+        color: #a8a8a8;
+    }
+
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+
+    .contact-card {
+        padding: 28px;
+
+        background-color: #181818;
+
+        border: 1px solid #292929;
+
+        border-radius: 10px;
+    }
+
+
+    .contact-card h2 {
+        margin: 0 0 14px 0;
+
+        color: #ffffff;
+
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+
+    .contact-card p {
+        margin: 0 0 22px 0;
+
+        color: #a8a8a8;
+
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+
+    .contact-detail {
+        display: flex;
+        flex-direction: column;
+
+        gap: 4px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .contact-detail strong {
+        color: #ffffff;
+
+        font-size: 14px;
+    }
+
+
+    .contact-detail span {
+        color: #a8a8a8;
+
+        font-size: 14px;
+    }
+
+
+    .contact-message-card {
+        grid-column: 1 / -1;
+    }
+
+
+    .contact-menu-button {
+        display: inline-block;
+
+        padding: 10px 16px;
+
+        background-color: #2a2a2a;
+
+        color: #ffffff;
+
+        text-decoration: none;
+
+        border-radius: 6px;
+
+        font-size: 14px;
+
+        transition: background-color 0.2s ease;
+    }
+
+
+    .contact-menu-button:hover {
+        background-color: #3a3a3a;
+    }
+
+
+    @media (max-width: 800px) {
+
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-message-card {
+            grid-column: auto;
+        }
+
+    }
+
+</style>
+
+{% endblock %}

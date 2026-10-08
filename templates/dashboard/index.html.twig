@@ -10,151 +10,823 @@
         {% include 'sidebar/index.html.twig' %}
     </aside>
 
+
     <main class="dashboard-content">
 
+        <!-- =========================
+             DASHBOARD HEADER
+        ========================== -->
+
         <header class="dashboard-header">
+
             <h1>Dashboard</h1>
-            <p>Welcome to La Mia Pizzeria.</p>
+
+            <p>
+                Welcome to La Mia Pizzeria.
+                Manage and explore your pizza website from here.
+            </p>
+
         </header>
 
-        <section class="dashboard-overview">
 
-            <article class="dashboard-card">
-                <h2>Welcome to La Mia Pizzeria</h2>
-                <p>
-                    Explore our menu and discover your next favorite pizza.
-                </p>
+        <!-- =========================
+             SUMMARY CARDS
+        ========================== -->
+
+        <section class="dashboard-summary">
+
+            <article class="summary-card">
+
+                <div class="summary-number">
+                    9
+                </div>
+
+                <div class="summary-info">
+
+                    <h2>Menu Items</h2>
+
+                    <p>
+                        Available pizzas
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-number">
+                    0
+                </div>
+
+                <div class="summary-info">
+
+                    <h2>Orders</h2>
+
+                    <p>
+                        Current orders
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-number">
+                    0
+                </div>
+
+                <div class="summary-info">
+
+                    <h2>Customers</h2>
+
+                    <p>
+                        Registered customers
+                    </p>
+
+                </div>
+
             </article>
 
         </section>
 
-        <section class="quick-actions">
 
-            <header class="section-header">
+
+        <!-- =========================
+             WELCOME SECTION
+        ========================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <h2>Welcome to La Mia Pizzeria</h2>
+
+                <p>
+                    Explore the website using the quick actions below.
+                </p>
+
+            </div>
+
+
+            <div class="welcome-card">
+
+                <h3>
+                    Delicious pizza made with love.
+                </h3>
+
+                <p>
+                    Browse our pizza menu, learn more about our story,
+                    and discover what La Mia Pizzeria has to offer.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             QUICK ACTIONS
+        ========================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
                 <h2>Quick Actions</h2>
-                <p>Quickly navigate through the website.</p>
-            </header>
+
+                <p>
+                    Quickly navigate through the website.
+                </p>
+
+            </div>
+
 
             <div class="action-cards">
 
                 <article class="action-card">
-                    <h3>View Home</h3>
-                    <p>Go to the La Mia Pizzeria home page.</p>
-                    <a href="/">Go to Home</a>
+
+                    <h3>
+                        View Home
+                    </h3>
+
+                    <p>
+                        Visit the main La Mia Pizzeria home page.
+                    </p>
+
+                    <a href="{{ path('app_home') }}">
+                        Go to Home
+                    </a>
+
                 </article>
 
+
                 <article class="action-card">
-                    <h3>View Dashboard</h3>
-                    <p>You are currently viewing the dashboard.</p>
-                    <a href="/dashboard">Stay on Dashboard</a>
+
+                    <h3>
+                        View Menu
+                    </h3>
+
+                    <p>
+                        Browse our selection of delicious pizzas.
+                    </p>
+
+                    <a href="{{ path('app_menu') }}">
+                        View Menu
+                    </a>
+
+                </article>
+
+
+                <article class="action-card">
+
+                    <h3>
+                        Our Story
+                    </h3>
+
+                    <p>
+                        Learn more about La Mia Pizzeria.
+                    </p>
+
+                    <a href="{{ path('app_story') }}">
+                        Read Our Story
+                    </a>
+
+                </article>
+
+
+                <article class="action-card">
+
+                    <h3>
+                        Contact Us
+                    </h3>
+
+                    <p>
+                        Find our contact information and location.
+                    </p>
+
+                    <a href="{{ path('app_contact') }}">
+                        Contact Us
+                    </a>
+
                 </article>
 
             </div>
 
         </section>
 
+
+
+        <!-- =========================
+             RECENT ORDERS
+        ========================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <h2>Recent Orders</h2>
+
+                <p>
+                    Recent customer orders will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="orders-empty-state">
+
+                <div class="empty-icon">
+                    🛒
+                </div>
+
+                <h3>
+                    No recent orders
+                </h3>
+
+                <p>
+                    Orders placed by customers will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             POPULAR PIZZAS
+        ========================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <h2>Popular Pizzas</h2>
+
+                <p>
+                    Some of the pizzas available on our menu.
+                </p>
+
+            </div>
+
+
+            <div class="popular-pizzas">
+
+
+                <!-- Pepperoni -->
+
+                <article class="popular-pizza-card">
+
+                    <div class="popular-pizza-image">
+
+                        <img
+                            src="{{ asset('images/Pepperoni Pizza.jpg') }}"
+                            alt="Pepperoni Pizza"
+                        >
+
+                    </div>
+
+                    <div class="popular-pizza-info">
+
+                        <h3>
+                            Pepperoni Pizza
+                        </h3>
+
+                        <p>
+                            Starting at ₱399
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- Margherita -->
+
+                <article class="popular-pizza-card">
+
+                    <div class="popular-pizza-image">
+
+                        <img
+                            src="{{ asset('images/Margherita Pizza.png') }}"
+                            alt="Margherita Pizza"
+                        >
+
+                    </div>
+
+                    <div class="popular-pizza-info">
+
+                        <h3>
+                            Margherita Pizza
+                        </h3>
+
+                        <p>
+                            Starting at ₱349
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- Hawaiian -->
+
+                <article class="popular-pizza-card">
+
+                    <div class="popular-pizza-image">
+
+                        <img
+                            src="{{ asset('images/Hawaiian Pizza.png') }}"
+                            alt="Hawaiian Pizza"
+                        >
+
+                    </div>
+
+                    <div class="popular-pizza-info">
+
+                        <h3>
+                            Hawaiian Pizza
+                        </h3>
+
+                        <p>
+                            Starting at ₱429
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
     </main>
 
 </div>
 
+
+
 <style>
-    .dashboard-header {
-        margin-bottom: 30px;
-    }
 
-    .dashboard-header h1 {
-        margin: 0 0 8px 0;
-        font-size: 28px;
-        font-weight: 600;
-    }
+/* =========================================
+   DASHBOARD HEADER
+========================================= */
 
-    .dashboard-header p {
-        margin: 0;
-        color: #a8a8a8;
-    }
+.dashboard-header {
+    margin-bottom: 30px;
+}
 
-    .dashboard-overview {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
+.dashboard-header h1 {
+    margin: 0 0 8px 0;
 
-    .dashboard-card {
-        padding: 24px;
-        background-color: #181818;
-        border: 1px solid #292929;
-        border-radius: 10px;
-    }
+    color: #ffffff;
 
-    .dashboard-card h2 {
-        margin: 0 0 10px 0;
-        color: #ffffff;
-        font-size: 18px;
-    }
+    font-size: 30px;
 
-    .dashboard-card p {
-        margin: 0;
-        color: #a8a8a8;
-    }
+    font-weight: 600;
+}
 
-    .quick-actions {
-        margin-top: 30px;
-    }
+.dashboard-header p {
+    margin: 0;
 
-    .section-header {
-        margin-bottom: 20px;
-    }
+    color: #a8a8a8;
 
-    .section-header h2 {
-        margin: 0 0 6px 0;
-        color: #ffffff;
-        font-size: 20px;
-        font-weight: 600;
-    }
+    font-size: 15px;
+}
 
-    .section-header p {
-        margin: 0;
-        color: #a8a8a8;
+
+
+/* =========================================
+   SUMMARY CARDS
+========================================= */
+
+.dashboard-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+.summary-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 22px;
+
+    background-color: #181818;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+}
+
+.summary-number {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 55px;
+
+    height: 55px;
+
+    background-color: #242424;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    font-weight: 600;
+}
+
+.summary-info h2 {
+
+    margin: 0 0 5px 0;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 600;
+}
+
+.summary-info p {
+
+    margin: 0;
+
+    color: #8f8f8f;
+
+    font-size: 13px;
+}
+
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.dashboard-section {
+
+    margin-bottom: 35px;
+}
+
+.section-header {
+
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+
+    margin: 0 0 6px 0;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 600;
+}
+
+.section-header p {
+
+    margin: 0;
+
+    color: #a8a8a8;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================================
+   WELCOME CARD
+========================================= */
+
+.welcome-card {
+
+    padding: 25px;
+
+    background-color: #181818;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+}
+
+.welcome-card h3 {
+
+    margin: 0 0 10px 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+.welcome-card p {
+
+    margin: 0;
+
+    color: #a8a8a8;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+
+/* =========================================
+   QUICK ACTIONS
+========================================= */
+
+.action-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.action-card {
+
+    padding: 22px;
+
+    background-color: #181818;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.action-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #444444;
+}
+
+.action-card h3 {
+
+    margin: 0 0 9px 0;
+
+    color: #ffffff;
+
+    font-size: 16px;
+}
+
+.action-card p {
+
+    min-height: 42px;
+
+    margin: 0 0 18px 0;
+
+    color: #a8a8a8;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.action-card a {
+
+    display: inline-block;
+
+    padding: 9px 13px;
+
+    background-color: #2a2a2a;
+
+    border-radius: 6px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+}
+
+.action-card a:hover {
+
+    background-color: #3a3a3a;
+}
+
+
+
+/* =========================================
+   RECENT ORDERS
+========================================= */
+
+.orders-empty-state {
+
+    padding: 45px 25px;
+
+    background-color: #181818;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.empty-icon {
+
+    margin-bottom: 12px;
+
+    font-size: 32px;
+}
+
+.orders-empty-state h3 {
+
+    margin: 0 0 8px 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.orders-empty-state p {
+
+    margin: 0;
+
+    color: #8f8f8f;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================================
+   POPULAR PIZZAS
+========================================= */
+
+.popular-pizzas {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.popular-pizza-card {
+
+    overflow: hidden;
+
+    background-color: #181818;
+
+    border: 1px solid #292929;
+
+    border-radius: 10px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.popular-pizza-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #444444;
+}
+
+.popular-pizza-image {
+
+    width: 100%;
+
+    height: 170px;
+
+    overflow: hidden;
+
+    background-color: #242424;
+}
+
+.popular-pizza-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.popular-pizza-card:hover
+.popular-pizza-image img {
+
+    transform: scale(1.04);
+}
+
+.popular-pizza-info {
+
+    padding: 18px;
+}
+
+.popular-pizza-info h3 {
+
+    margin: 0 0 6px 0;
+
+    color: #ffffff;
+
+    font-size: 16px;
+}
+
+.popular-pizza-info p {
+
+    margin: 0;
+
+    color: #a8a8a8;
+
+    font-size: 13px;
+}
+
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard-summary {
+
+        grid-template-columns:
+            repeat(3, 1fr);
     }
 
     .action-cards {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
-    .action-card {
-        padding: 24px;
-        background-color: #181818;
-        border: 1px solid #292929;
-        border-radius: 10px;
+    .popular-pizzas {
+
+        grid-template-columns:
+            repeat(3, 1fr);
     }
 
-    .action-card h3 {
-        margin: 0 0 10px 0;
-        color: #ffffff;
-        font-size: 17px;
+}
+
+
+@media (max-width: 700px) {
+
+    .dashboard-summary {
+
+        grid-template-columns:
+            1fr;
     }
 
-    .action-card p {
-        margin: 0 0 20px 0;
-        color: #a8a8a8;
-        font-size: 14px;
+    .action-cards {
+
+        grid-template-columns:
+            1fr;
     }
 
-    .action-card a {
-        display: inline-block;
-        padding: 9px 14px;
-        background-color: #2a2a2a;
-        color: #ffffff;
-        text-decoration: none;
-        border-radius: 6px;
-        font-size: 14px;
+    .popular-pizzas {
+
+        grid-template-columns:
+            1fr;
     }
 
-    .action-card a:hover {
-        background-color: #3a3a3a;
-    }
+}
+
 </style>
 
 {% endblock %}

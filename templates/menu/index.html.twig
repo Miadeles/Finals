@@ -1,0 +1,915 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block body %}
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        {% include 'sidebar/index.html.twig' %}
+    </aside>
+
+    <main class="dashboard-content">
+
+        <header class="dashboard-header">
+            <h1>Menu</h1>
+
+            <p>
+                Explore our delicious La Mia Pizzeria pizzas.
+            </p>
+        </header>
+
+
+        <section class="menu-section">
+
+            <div class="menu-introduction">
+
+                <h2>Our Pizza Menu</h2>
+
+                <p>
+                    Fresh ingredients, delicious flavors, and pizza made with love.
+                </p>
+
+            </div>
+
+
+            <div class="pizza-grid">
+
+
+                <!-- PEPPERONI -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/Pepperoni Pizza.jpg') }}"
+                            alt="Pepperoni Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>Pepperoni Pizza</h3>
+
+                        <p>
+                            A classic favorite topped with rich tomato sauce,
+                            melted mozzarella cheese, and savory pepperoni slices.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="pepperoni-size" value="Small - ₱399">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱399</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="pepperoni-size" value="Medium - ₱449">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱449</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="pepperoni-size" value="Large - ₱499">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱499</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MARGHERITA -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/Margherita Pizza.png') }}"
+                            alt="Margherita Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>Margherita Pizza</h3>
+
+                        <p>
+                            A favorite made with rich tomato sauce,
+                            melted mozzarella cheese, and fresh basil.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="margherita-size" value="Small - ₱349">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱349</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="margherita-size" value="Medium - ₱399">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱399</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="margherita-size" value="Large - ₱449">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱449</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CREAMY SPINACH -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/Creamy Spinach Pizza.png') }}"
+                            alt="Creamy Spinach Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>Creamy Spinach Pizza</h3>
+
+                        <p>
+                            A creamy and flavorful pizza topped with rich sauce,
+                            melted mozzarella cheese, and fresh spinach.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="spinach-size" value="Small - ₱429">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱429</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="spinach-size" value="Medium - ₱479">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱479</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="spinach-size" value="Large - ₱529">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱529</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- NEW YORK STYLE -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/New York Style Pizza.png') }}"
+                            alt="New York Style Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>New York Style Pizza</h3>
+
+                        <p>
+                            A classic thin and foldable crust topped with rich
+                            tomato sauce and mozzarella cheese.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="new-york-size" value="Small - ₱449">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱449</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="new-york-size" value="Medium - ₱499">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱499</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="new-york-size" value="Large - ₱549">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱549</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- HAWAIIAN -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/Hawaiian Pizza.png') }}"
+                            alt="Hawaiian Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>Hawaiian Pizza</h3>
+
+                        <p>
+                            A sweet and savory favorite topped with juicy ham,
+                            pineapple, mozzarella cheese, and rich pizza sauce.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="hawaiian-size" value="Small - ₱429">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱429</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="hawaiian-size" value="Medium - ₱479">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱479</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="hawaiian-size" value="Large - ₱529">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱529</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- SPINACH & GLAZED BACON -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/Spinach & Glazed Bacon Pizza.png') }}"
+                            alt="Spinach & Glazed Bacon Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>Spinach &amp; Glazed Bacon Pizza</h3>
+
+                        <p>
+                            Flavorful spinach and savory glazed bacon,
+                            topped with mozzarella cheese and rich pizza sauce.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="spinach-bacon-size" value="Small - ₱459">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱459</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="spinach-bacon-size" value="Medium - ₱509">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱509</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="spinach-bacon-size" value="Large - ₱559">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱559</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EXTRAVAGANZZA -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/Extravaganzza Pizza.png') }}"
+                            alt="Extravaganzza Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>Extravaganzza Pizza</h3>
+
+                        <p>
+                            A loaded pizza packed with savory meats,
+                            fresh toppings, mozzarella cheese, and rich sauce.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="extravaganzza-size" value="Small - ₱499">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱499</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="extravaganzza-size" value="Medium - ₱549">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱549</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="extravaganzza-size" value="Large - ₱599">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱599</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CHEESE MANIA -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/Cheese Mania Pizza.png') }}"
+                            alt="Cheese Mania Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>Cheese Mania Pizza</h3>
+
+                        <p>
+                            A cheesy favorite loaded with tomato sauce,
+                            mozzarella cheese, and a generous blend of cheeses.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="cheese-mania-size" value="Small - ₱449">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱449</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="cheese-mania-size" value="Medium - ₱499">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱499</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="cheese-mania-size" value="Large - ₱549">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱549</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- AMERICAN BACON & CHEESEBURGER -->
+
+                <article class="pizza-card">
+
+                    <div class="pizza-image">
+                        <img
+                            src="{{ asset('images/American Bacon & Cheeseburger Pizza.png') }}"
+                            alt="American Bacon & Cheeseburger Pizza"
+                        >
+                    </div>
+
+                    <div class="pizza-info">
+
+                        <h3>
+                            American Bacon &amp; Cheeseburger Pizza
+                        </h3>
+
+                        <p>
+                            A hearty combination of savory bacon,
+                            cheeseburger-inspired toppings, mozzarella cheese,
+                            and rich pizza sauce.
+                        </p>
+
+                        <div class="pizza-prices">
+
+                            <label class="size-option">
+                                <input type="radio" name="american-bacon-size" value="Small - ₱479">
+                                <span class="size-box">
+                                    <span>Small</span>
+                                    <strong>₱479</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="american-bacon-size" value="Medium - ₱529">
+                                <span class="size-box">
+                                    <span>Medium</span>
+                                    <strong>₱529</strong>
+                                </span>
+                            </label>
+
+                            <label class="size-option">
+                                <input type="radio" name="american-bacon-size" value="Large - ₱579">
+                                <span class="size-box">
+                                    <span>Large</span>
+                                    <strong>₱579</strong>
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <div class="pizza-order">
+                            <button type="button">
+                                Add to Cart
+                            </button>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<style>
+
+/* =========================================
+   DASHBOARD HEADER
+========================================= */
+
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.dashboard-header p {
+    margin: 0;
+    color: #a8a8a8;
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.menu-section {
+    margin-top: 10px;
+}
+
+.menu-introduction {
+    margin-bottom: 25px;
+}
+
+.menu-introduction h2 {
+    margin: 0 0 8px 0;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.menu-introduction p {
+    margin: 0;
+    color: #a8a8a8;
+}
+
+
+/* =========================================
+   PIZZA GRID
+========================================= */
+
+.pizza-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================
+   PIZZA CARD
+========================================= */
+
+.pizza-card {
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    height: 100%;
+    box-sizing: border-box;
+
+    background-color: #181818;
+    border: 1px solid #292929;
+    border-radius: 10px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* NO CARD MOVEMENT */
+
+.pizza-card:hover {
+    border-color: #7f1d1d;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================
+   PIZZA IMAGE
+========================================= */
+
+.pizza-image {
+    width: 100%;
+    height: 190px;
+
+    overflow: hidden;
+    flex-shrink: 0;
+
+    background-color: #242424;
+}
+
+.pizza-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.3s ease;
+}
+
+.pizza-card:hover .pizza-image img {
+    transform: scale(1.04);
+}
+
+
+/* =========================================
+   PIZZA INFORMATION
+========================================= */
+
+.pizza-info {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.pizza-info h3 {
+    margin: 0 0 10px 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    line-height: 1.3;
+}
+
+.pizza-info p {
+    margin: 0 0 20px 0;
+
+    color: #a8a8a8;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    min-height: 63px;
+}
+
+
+/* =========================================
+   SIZE / PRICE OPTIONS
+========================================= */
+
+.pizza-prices {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: auto;
+    margin-bottom: 18px;
+}
+
+.size-option {
+    display: block;
+
+    cursor: pointer;
+}
+
+.size-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.size-box {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 65px;
+
+    padding: 8px 5px;
+
+    box-sizing: border-box;
+
+    background-color: #222222;
+
+    border: 2px solid #333333;
+
+    border-radius: 7px;
+
+    color: #a8a8a8;
+
+    text-align: center;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.size-box span {
+    font-size: 11px;
+
+    font-weight: 500;
+}
+
+.size-box strong {
+    margin-top: 4px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   SELECTED SIZE
+========================================= */
+
+.size-option input:checked + .size-box {
+    background-color: rgba(46, 125, 50, 0.15);
+
+    border-color: #2e7d32;
+
+    color: #66bb6a;
+
+    box-shadow:
+        0 0 0 1px rgba(46, 125, 50, 0.2);
+}
+
+.size-option input:checked + .size-box strong {
+    color: #66bb6a;
+}
+
+
+/* =========================================
+   SIZE HOVER
+========================================= */
+
+.size-option:hover .size-box {
+    border-color: #4caf50;
+}
+
+
+/* =========================================
+   ADD TO CART
+========================================= */
+
+.pizza-order {
+    width: 100%;
+
+    margin-top: auto;
+}
+
+.pizza-order button {
+    width: 100%;
+
+    padding: 12px 16px;
+
+    background-color: #b91c1c;
+
+    border: none;
+
+    border-radius: 7px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.pizza-order button:hover {
+    background-color: #dc2626;
+
+    box-shadow:
+        0 5px 15px rgba(185, 28, 28, 0.25);
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .pizza-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .pizza-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pizza-prices {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+</style>
+
+{% endblock %}
