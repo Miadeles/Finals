@@ -1,0 +1,229 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkout | La Mia Pizzeria{% endblock %}
+
+{% block body %}
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        {% include 'sidebar/index.html.twig' %}
+    </aside>
+
+    <main class="dashboard-content">
+        <header class="dashboard-header">
+            <h1>Checkout</h1>
+            <p>Enter your details to complete your pizza order.</p>
+        </header>
+
+        <section class="checkout-section">
+            <form id="checkout-form">
+                <div class="checkout-card">
+                    <h2>Customer Information</h2>
+
+                    <label for="customer-name">Full Name</label>
+                    <input id="customer-name" name="name"
+                           type="text" autocomplete="name" required>
+
+                    <label for="customer-phone">Contact Number</label>
+                    <input id="customer-phone" name="phone"
+                           type="tel" autocomplete="tel" required>
+
+                    <label for="customer-address">Delivery Address</label>
+                    <textarea id="customer-address" name="address"
+                              autocomplete="street-address"
+                              rows="3" required></textarea>
+                </div>
+
+                <div class="checkout-card">
+                    <h2>Order Summary</h2>
+                    <div id="checkout-items"></div>
+
+                    <div class="checkout-total">
+                        <span>Total</span>
+                        <strong id="checkout-total">₱0.00</strong>
+                    </div>
+                </div>
+
+                <p id="checkout-message" role="status"></p>
+
+                <button type="submit" class="place-order-button">
+                    Place Order
+                </button>
+            </form>
+        </section>
+    </main>
+</div>
+
+<style>
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: 30px;
+}
+
+.dashboard-header p {
+    margin: 0;
+    color: #a8a8a8;
+}
+
+.checkout-section {
+    max-width: 800px;
+}
+
+.checkout-card {
+    margin-bottom: 20px;
+    padding: 25px;
+    background: #181818;
+    border: 1px solid #292929;
+    border-radius: 10px;
+}
+
+.checkout-card h2 {
+    margin: 0 0 20px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.checkout-card label {
+    display: block;
+    margin: 16px 0 8px;
+    color: #ddd;
+}
+
+.checkout-card input,
+.checkout-card textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    background: #242424;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #fff;
+    font: inherit;
+}
+
+.checkout-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
+    color: #ddd;
+}
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.checkout-total strong {
+    color: #66bb6a;
+}
+
+.place-order-button {
+    padding: 13px 22px;
+    background: #66bb6a;
+    border: none;
+    border-radius: 6px;
+    color: #111;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.place-order-button:hover {
+    background: #81c784;
+}
+
+#checkout-message {
+    color: #ffcc80;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const itemsContainer = document.getElementById('checkout-items');
+    const totalElement = document.getElementById('checkout-total');
+    const message = document.getElementById('checkout-message');
+    const form = document.getElementById('checkout-form');
+
+    function getCart() {
+        try {
+            const cart = JSON.parse(localStorage.getItem('pizzaCart') || '[]');
+            return Array.isArray(cart) ? cart : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function money(amount) {
+        return '₱' + amount.toLocaleString('en-PH', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+
+    function renderSummary() {
+        const cart = getCart();
+        itemsContainer.replaceChildren();
+        let total = 0;
+
+        if (cart.length === 0) {
+            itemsContainer.textContent = 'Your cart is empty. Please add pizzas before checkout.';
+            totalElement.textContent = money(0);
+            form.querySelector('button[type="submit"]').disabled = true;
+            return;
+        }
+
+        form.querySelector('button[type="submit"]').disabled = false;
+
+        cart.forEach(function (item) {
+            const quantity = Math.max(1, Number(item.quantity) || 1);
+            const price = Math.max(0, Number(item.price) || 0);
+            const lineTotal = price * quantity;
+            total += lineTotal;
+
+            const line = document.createElement('div');
+            line.className = 'checkout-line';
+
+            const description = document.createElement('span');
+            description.textContent =
+                (item.name || 'Pizza') + ' (' +
+                (item.size || 'Size not specified') + ') × ' + quantity;
+
+            const amount = document.createElement('strong');
+            amount.textContent = money(lineTotal);
+
+            line.append(description, amount);
+            itemsContainer.appendChild(line);
+        });
+
+        totalElement.textContent = money(total);
+    }
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        if (getCart().length === 0) {
+            message.textContent = 'Your cart is empty. Please add a pizza first.';
+            renderSummary();
+            return;
+        }
+
+        message.textContent =
+            'Your details are valid. Order submission is not connected yet.';
+    });
+
+    renderSummary();
+});
+</script>
+
+
+{% endblock %}
