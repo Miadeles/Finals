@@ -25,6 +25,10 @@ class OrderItem
     #[ORM\Column]
     private ?int $price = null;
 
+    #[ORM\ManyToOne(inversedBy: 'orderItems')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Order $parentOrder = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +78,18 @@ class OrderItem
     public function setPrice(int $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getParentOrder(): ?Order
+    {
+        return $this->parentOrder;
+    }
+
+    public function setParentOrder(?Order $parentOrder): static
+    {
+        $this->parentOrder = $parentOrder;
 
         return $this;
     }

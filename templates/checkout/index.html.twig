@@ -142,88 +142,188 @@
     background: #81c784;
 }
 
+.place-order-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 #checkout-message {
     color: #ffcc80;
 }
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const itemsContainer = document.getElementById('checkout-items');
-    const totalElement = document.getElementById('checkout-total');
-    const message = document.getElementById('checkout-message');
-    const form = document.getElementById('checkout-form');
+(function () {
+    const CART_KEY = 'pizzaCart';
 
-    function getCart() {
-        try {
-            const cart = JSON.parse(localStorage.getItem('pizzaCart') || '[]');
-            return Array.isArray(cart) ? cart : [];
-        } catch (error) {
-            return [];
-        }
-    }
+    function initializeCheckout() {
+        const itemsContainer = document.getElementById('checkout-items');
+        const totalElement = document.getElementById('checkout-total');
+        const message = document.getElementById('checkout-message');
+        const form = document.getElementById('checkout-form');
 
-    function money(amount) {
-        return '₱' + amount.toLocaleString('en-PH', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-    }
-
-    function renderSummary() {
-        const cart = getCart();
-        itemsContainer.replaceChildren();
-        let total = 0;
-
-        if (cart.length === 0) {
-            itemsContainer.textContent = 'Your cart is empty. Please add pizzas before checkout.';
-            totalElement.textContent = money(0);
-            form.querySelector('button[type="submit"]').disabled = true;
+        if (!itemsContainer || !totalElement || !form) {
             return;
         }
 
-        form.querySelector('button[type="submit"]').disabled = false;
+        function getCart() {
+            try {
+                const cart = JSON.parse(
+                    localStorage.getItem(CART_KEY) || '[]'
+                );
 
-        cart.forEach(function (item) {
-            const quantity = Math.max(1, Number(item.quantity) || 1);
-            const price = Math.max(0, Number(item.price) || 0);
-            const lineTotal = price * quantity;
-            total += lineTotal;
-
-            const line = document.createElement('div');
-            line.className = 'checkout-line';
-
-            const description = document.createElement('span');
-            description.textContent =
-                (item.name || 'Pizza') + ' (' +
-                (item.size || 'Size not specified') + ') × ' + quantity;
-
-            const amount = document.createElement('strong');
-            amount.textContent = money(lineTotal);
-
-            line.append(description, amount);
-            itemsContainer.appendChild(line);
-        });
-
-        totalElement.textContent = money(total);
-    }
-
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        if (getCart().length === 0) {
-            message.textContent = 'Your cart is empty. Please add a pizza first.';
-            renderSummary();
-            return;
+                return Array.isArray(cart) ? cart : [];
+            } catch (error) {
+                return [];
+            }
         }
 
-        message.textContent =
-            'Your details are valid. Order submission is not connected yet.';
-    });
+        function money(amount) {
+            return '₱' + amount.toLocaleString('en-PH', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
 
-    renderSummary();
-});
+        function renderSummary() {
+            const cart = getCart();
+            itemsContainer.replaceChildren();
+
+            let total = 0;
+
+            if (cart.length === 0) {
+                itemsContainer.textContent =
+                    'Your cart is empty. Please add pizzas before checkout.';
+
+                totalElement.textContent = money(0);
+                form.querySelector('button[type="submit"]').disabled = true;
+                return;
+            }
+
+            cart.forEach(function (item) {
+                const quantity = Math.max(
+                    1,
+                    Number(item.quantity) || 1
+                );
+
+                const price = Math.max(
+                    0,
+                    Number(item.price) || 0
+                );
+
+                const lineTotal = price * quantity;
+                total += lineTotal;
+
+                const line = document.createElement('div');
+                line.className = 'checkout-line';
+
+                const description = document.createElement('span');
+                description.textContent =
+                    (item.name || 'Pizza') + ' (' +
+                    (item.size || 'Size not specified') +
+                    ') × ' + quantity;
+
+                const amount = document.createElement('strong');
+                amount.textContent = money(lineTotal);
+
+                line.append(description, amount);
+                itemsContainer.appendChild(line);
+            });
+
+            totalElement.textContent = money(total);
+
+            form.querySelector('button[type="submit"]').disabled =
+                total <= 0;
+        }
+
+        // Show the current cart as soon as Checkout initializes.
+        renderSummary();
+
+        // Refresh the displayed total when returning to this page.
+        window.addEventListener('pageshow', renderSummary);
+
+        // Refresh when another tab changes the cart.
+        window.addEventListener('storage', function (event) {
+            if (event.key === CART_KEY || event.key === null) {
+                renderSummary();
+            }
+        });
+
+        // Refresh when returning to the browser tab.
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden) {
+                renderSummary();
+            }
+        });
+
+        // Keep the existing order submission behavior.
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const cart = getCart();
+
+            if (cart.length === 0) {
+                message.textContent =
+                    'Your cart is empty. Please add a pizza first.';
+                renderSummary();
+                return;
+            }
+
+            const button = form.querySelector('button[type="submit"]');
+            button.disabled = true;
+            message.textContent = 'Submitting your order...';
+
+            try {
+                const response = await fetch('/checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: document.getElementById('customer-name').value.trim(),
+                        phone: document.getElementById('customer-phone').value.trim(),
+                        address: document.getElementById('customer-address').value.trim(),
+                        items: cart
+                    })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(
+                        result.message || 'Unable to place your order.'
+                    );
+                }
+
+                message.textContent =
+                    result.message + ' Order number: ' + result.orderId;
+
+                localStorage.removeItem(CART_KEY);
+                form.reset();
+                renderSummary();
+
+            } catch (error) {
+                message.textContent =
+                    error.message ||
+                    'Something went wrong. Please try again.';
+
+            } finally {
+                renderSummary();
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener(
+            'DOMContentLoaded',
+            initializeCheckout,
+            { once: true }
+        );
+    } else {
+        initializeCheckout();
+    }
+})();
 </script>
-
 
 {% endblock %}

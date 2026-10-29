@@ -523,83 +523,81 @@
 
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.pizza-card').forEach(function (card) {
-        const button = card.querySelector('.pizza-order button');
 
-        if (!button) return;
+    <script>
+    function initializePizzaCart() {
+        document.querySelectorAll('.pizza-card').forEach(function (card) {
+            const button = card.querySelector('.pizza-order button');
 
-        const originalText = button.textContent.trim();
+            if (!button || button.dataset.cartInitialized === 'true') return;
+            button.dataset.cartInitialized = 'true';
 
-        button.addEventListener('click', function () {
-            const name = card.querySelector('h3').textContent.trim();
-            const checked = card.querySelectorAll(
-                '.size-option input:checked'
-            );
+            const originalText = button.textContent.trim();
 
-            if (checked.length === 0) {
-                alert('Please select at least one pizza size first.');
-                return;
-            }
+            button.addEventListener('click', function () {
+                const name = card.querySelector('h3').textContent.trim();
+                const checked = card.querySelectorAll('.size-option input:checked');
 
-            let cart = [];
+                if (checked.length === 0) {
+                    alert('Please select at least one pizza size first.');
+                    return;
+                }
 
-            try {
-                cart = JSON.parse(localStorage.getItem('pizzaCart') || '[]');
+                let cart = [];
 
-                if (!Array.isArray(cart)) {
+                try {
+                    cart = JSON.parse(localStorage.getItem('pizzaCart') || '[]');
+                    if (!Array.isArray(cart)) cart = [];
+                } catch (error) {
                     cart = [];
                 }
-            } catch (error) {
-                cart = [];
-            }
 
-            let addedCount = 0;
+                let addedCount = 0;
 
-            checked.forEach(function (input) {
-                const match = input.value.match(
-                    /^(Small|Medium|Large)\s*-\s*₱([\d,.]+)$/
-                );
+                checked.forEach(function (input) {
+                    const match = input.value.match(
+                        /^(Small|Medium|Large)\s*-\s*₱([\d,.]+)$/
+                    );
 
-                if (!match) return;
+                    if (!match) return;
 
-                cart.push({
-                    name: name,
-                    size: match[1],
-                    price: Number(match[2].replace(/,/g, '')),
-                    quantity: 1
+                    cart.push({
+                        name: name,
+                        size: match[1],
+                        price: Number(match[2].replace(/,/g, '')),
+                        quantity: 1
+                    });
+
+                    addedCount++;
                 });
 
-                addedCount++;
-            });
+                if (addedCount === 0) {
+                    alert('Could not read the selected pizza size.');
+                    return;
+                }
 
-            if (addedCount === 0) {
-                alert('Could not read the selected pizza size.');
-                return;
-            }
+                try {
+                    localStorage.setItem('pizzaCart', JSON.stringify(cart));
+                    button.textContent = '✓ ADDED TO CART';
 
-            try {
-                localStorage.setItem('pizzaCart', JSON.stringify(cart));
-
-                button.textContent = '✓ ADDED TO CART';
-                button.classList.add('added-to-cart');
-                button.setAttribute('aria-live', 'polite');
-
-                setTimeout(function () {
+                    setTimeout(function () {
+                        button.textContent = originalText;
+                    }, 1500);
+                } catch (error) {
+                    alert('Could not save your cart. Check your browser storage settings.');
                     button.textContent = originalText;
-                    button.classList.remove('added-to-cart');
-                }, 1500);
-
-            } catch (error) {
-                alert('Could not save your cart. Please check your browser storage settings.');
-                button.textContent = originalText;
-                button.classList.remove('added-to-cart');
-            }
+                }
+            });
         });
-    });
-});
-</script>
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializePizzaCart, { once: true });
+    } else {
+        initializePizzaCart();
+    }
+    </script>
+
 
 
 {% endblock %}
