@@ -25,288 +25,64 @@
                 <p>Fresh ingredients, delicious flavors, and pizza made with love.</p>
             </div>
 
+            
             <div class="pizza-grid">
 
-                <!-- PEPPERONI -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/Pepperoni Pizza.jpg') }}" alt="Pepperoni Pizza">
-                    </div>
+                {% set sizePrices = {
+                    'Pepperoni Pizza': {'Small': 399, 'Medium': 449, 'Large': 499},
+                    'Margherita Pizza': {'Small': 349, 'Medium': 399, 'Large': 449},
+                    'Creamy Spinach Pizza': {'Small': 429, 'Medium': 479, 'Large': 529},
+                    'New York Style Pizza': {'Small': 449, 'Medium': 499, 'Large': 549},
+                    'Hawaiian Pizza': {'Small': 429, 'Medium': 479, 'Large': 529},
+                    'Spinach & Glazed Bacon Pizza': {'Small': 459, 'Medium': 509, 'Large': 559},
+                    'Extravaganzza Pizza': {'Small': 499, 'Medium': 549, 'Large': 599},
+                    'Cheese Mania Pizza': {'Small': 449, 'Medium': 499, 'Large': 549},
+                    'American Bacon & Cheeseburger Pizza': {'Small': 479, 'Medium': 529, 'Large': 579}
+                } %}
 
-                    <div class="pizza-info">
-                        <h3>Pepperoni Pizza</h3>
-                        <p>A classic favorite topped with rich tomato sauce, melted mozzarella cheese, and savory pepperoni slices.</p>
+                {% for product in products %}
+                    {% set productName = product.name %}
+                    {% set prices = sizePrices[productName]|default({'Small': product.price, 'Medium': product.price, 'Large': product.price}) %}
+                    {% set imageName = product.image|default('') %}
 
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="pepperoni-size[]" value="Small - ₱399">
-                                <span class="size-box"><span>Small</span><strong>₱399</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="pepperoni-size[]" value="Medium - ₱449">
-                                <span class="size-box"><span>Medium</span><strong>₱449</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="pepperoni-size[]" value="Large - ₱499">
-                                <span class="size-box"><span>Large</span><strong>₱499</strong></span>
-                            </label>
+                    <article class="pizza-card">
+                        <div class="pizza-image">
+                            {% if imageName %}
+                                <img src="{{ asset('images/' ~ imageName) }}" alt="{{ productName }}">
+                            {% endif %}
                         </div>
 
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
+                        <div class="pizza-info">
+                            <h3>{{ productName }}</h3>
+                            <p>{{ product.description|default('Freshly prepared with delicious ingredients.') }}</p>
+
+                            <div class="pizza-prices">
+                                {% for size, price in prices %}
+                                    <label class="size-option">
+                                        <input
+                                            type="checkbox"
+                                            name="product-{{ product.id }}-size[]"
+                                            value="{{ size }} - ₱{{ price }}"
+                                        >
+                                        <span class="size-box">
+                                            <span>{{ size }}</span>
+                                            <strong>₱{{ price }}</strong>
+                                        </span>
+                                    </label>
+                                {% endfor %}
+                            </div>
+
+                            <div class="pizza-order">
+                                <button type="button">Add to Cart</button>
+                            </div>
                         </div>
-                    </div>
-                </article>
-
-                <!-- MARGHERITA -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/Margherita Pizza.png') }}" alt="Margherita Pizza">
-                    </div>
-
-                    <div class="pizza-info">
-                        <h3>Margherita Pizza</h3>
-                        <p>A favorite made with rich tomato sauce, melted mozzarella cheese, and fresh basil.</p>
-
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="margherita-size[]" value="Small - ₱349">
-                                <span class="size-box"><span>Small</span><strong>₱349</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="margherita-size[]" value="Medium - ₱399">
-                                <span class="size-box"><span>Medium</span><strong>₱399</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="margherita-size[]" value="Large - ₱449">
-                                <span class="size-box"><span>Large</span><strong>₱449</strong></span>
-                            </label>
-                        </div>
-
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- CREAMY SPINACH -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/Creamy Spinach Pizza.png') }}" alt="Creamy Spinach Pizza">
-                    </div>
-
-                    <div class="pizza-info">
-                        <h3>Creamy Spinach Pizza</h3>
-                        <p>A creamy and flavorful pizza topped with rich sauce, melted mozzarella cheese, and fresh spinach.</p>
-
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="spinach-size[]" value="Small - ₱429">
-                                <span class="size-box"><span>Small</span><strong>₱429</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="spinach-size[]" value="Medium - ₱479">
-                                <span class="size-box"><span>Medium</span><strong>₱479</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="spinach-size[]" value="Large - ₱529">
-                                <span class="size-box"><span>Large</span><strong>₱529</strong></span>
-                            </label>
-                        </div>
-
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- NEW YORK STYLE -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/New York Style Pizza.png') }}" alt="New York Style Pizza">
-                    </div>
-
-                    <div class="pizza-info">
-                        <h3>New York Style Pizza</h3>
-                        <p>A classic thin and foldable crust topped with rich tomato sauce and mozzarella cheese.</p>
-
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="new-york-size[]" value="Small - ₱449">
-                                <span class="size-box"><span>Small</span><strong>₱449</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="new-york-size[]" value="Medium - ₱499">
-                                <span class="size-box"><span>Medium</span><strong>₱499</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="new-york-size[]" value="Large - ₱549">
-                                <span class="size-box"><span>Large</span><strong>₱549</strong></span>
-                            </label>
-                        </div>
-
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- HAWAIIAN -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/Hawaiian Pizza.png') }}" alt="Hawaiian Pizza">
-                    </div>
-
-                    <div class="pizza-info">
-                        <h3>Hawaiian Pizza</h3>
-                        <p>A sweet and savory favorite topped with juicy ham, pineapple, mozzarella cheese, and rich pizza sauce.</p>
-
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="hawaiian-size[]" value="Small - ₱429">
-                                <span class="size-box"><span>Small</span><strong>₱429</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="hawaiian-size[]" value="Medium - ₱479">
-                                <span class="size-box"><span>Medium</span><strong>₱479</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="hawaiian-size[]" value="Large - ₱529">
-                                <span class="size-box"><span>Large</span><strong>₱529</strong></span>
-                            </label>
-                        </div>
-
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- SPINACH & GLAZED BACON -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/Spinach & Glazed Bacon Pizza.png') }}" alt="Spinach & Glazed Bacon Pizza">
-                    </div>
-
-                    <div class="pizza-info">
-                        <h3>Spinach &amp; Glazed Bacon Pizza</h3>
-                        <p>Flavorful spinach and savory glazed bacon, topped with mozzarella cheese and rich pizza sauce.</p>
-
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="spinach-bacon-size[]" value="Small - ₱459">
-                                <span class="size-box"><span>Small</span><strong>₱459</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="spinach-bacon-size[]" value="Medium - ₱509">
-                                <span class="size-box"><span>Medium</span><strong>₱509</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="spinach-bacon-size[]" value="Large - ₱559">
-                                <span class="size-box"><span>Large</span><strong>₱559</strong></span>
-                            </label>
-                        </div>
-
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- EXTRAVAGANZZA -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/Extravaganzza Pizza.png') }}" alt="Extravaganzza Pizza">
-                    </div>
-
-                    <div class="pizza-info">
-                        <h3>Extravaganzza Pizza</h3>
-                        <p>A loaded pizza packed with savory meats, fresh toppings, mozzarella cheese, and rich sauce.</p>
-
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="extravaganzza-size[]" value="Small - ₱499">
-                                <span class="size-box"><span>Small</span><strong>₱499</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="extravaganzza-size[]" value="Medium - ₱549">
-                                <span class="size-box"><span>Medium</span><strong>₱549</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="extravaganzza-size[]" value="Large - ₱599">
-                                <span class="size-box"><span>Large</span><strong>₱599</strong></span>
-                            </label>
-                        </div>
-
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- CHEESE MANIA -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/Cheese Mania Pizza.png') }}" alt="Cheese Mania Pizza">
-                    </div>
-
-                    <div class="pizza-info">
-                        <h3>Cheese Mania Pizza</h3>
-                        <p>A cheesy favorite loaded with tomato sauce, mozzarella cheese, and a generous blend of cheeses.</p>
-
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="cheese-mania-size[]" value="Small - ₱449">
-                                <span class="size-box"><span>Small</span><strong>₱449</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="cheese-mania-size[]" value="Medium - ₱499">
-                                <span class="size-box"><span>Medium</span><strong>₱499</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="cheese-mania-size[]" value="Large - ₱549">
-                                <span class="size-box"><span>Large</span><strong>₱549</strong></span>
-                            </label>
-                        </div>
-
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- AMERICAN BACON & CHEESEBURGER -->
-                <article class="pizza-card">
-                    <div class="pizza-image">
-                        <img src="{{ asset('images/American Bacon & Cheeseburger Pizza.png') }}" alt="American Bacon & Cheeseburger Pizza">
-                    </div>
-
-                    <div class="pizza-info">
-                        <h3>American Bacon &amp; Cheeseburger Pizza</h3>
-                        <p>A hearty combination of savory bacon, cheeseburger-inspired toppings, mozzarella cheese, and rich pizza sauce.</p>
-
-                        <div class="pizza-prices">
-                            <label class="size-option">
-                                <input type="checkbox" name="american-bacon-size[]" value="Small - ₱479">
-                                <span class="size-box"><span>Small</span><strong>₱479</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="american-bacon-size[]" value="Medium - ₱529">
-                                <span class="size-box"><span>Medium</span><strong>₱529</strong></span>
-                            </label>
-                            <label class="size-option">
-                                <input type="checkbox" name="american-bacon-size[]" value="Large - ₱579">
-                                <span class="size-box"><span>Large</span><strong>₱579</strong></span>
-                            </label>
-                        </div>
-
-                        <div class="pizza-order">
-                            <button type="button">Add to Cart</button>
-                        </div>
-                    </div>
-                </article>
+                    </article>
+                {% else %}
+                    <p>No products have been added yet. Please add products using the Product management page.</p>
+                {% endfor %}
 
             </div>
+
         </section>
     </main>
 </div>
@@ -523,83 +299,81 @@
 
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.pizza-card').forEach(function (card) {
-        const button = card.querySelector('.pizza-order button');
 
-        if (!button) return;
+    <script>
+    function initializePizzaCart() {
+        document.querySelectorAll('.pizza-card').forEach(function (card) {
+            const button = card.querySelector('.pizza-order button');
 
-        const originalText = button.textContent.trim();
+            if (!button || button.dataset.cartInitialized === 'true') return;
+            button.dataset.cartInitialized = 'true';
 
-        button.addEventListener('click', function () {
-            const name = card.querySelector('h3').textContent.trim();
-            const checked = card.querySelectorAll(
-                '.size-option input:checked'
-            );
+            const originalText = button.textContent.trim();
 
-            if (checked.length === 0) {
-                alert('Please select at least one pizza size first.');
-                return;
-            }
+            button.addEventListener('click', function () {
+                const name = card.querySelector('h3').textContent.trim();
+                const checked = card.querySelectorAll('.size-option input:checked');
 
-            let cart = [];
+                if (checked.length === 0) {
+                    alert('Please select at least one pizza size first.');
+                    return;
+                }
 
-            try {
-                cart = JSON.parse(localStorage.getItem('pizzaCart') || '[]');
+                let cart = [];
 
-                if (!Array.isArray(cart)) {
+                try {
+                    cart = JSON.parse(localStorage.getItem('pizzaCart') || '[]');
+                    if (!Array.isArray(cart)) cart = [];
+                } catch (error) {
                     cart = [];
                 }
-            } catch (error) {
-                cart = [];
-            }
 
-            let addedCount = 0;
+                let addedCount = 0;
 
-            checked.forEach(function (input) {
-                const match = input.value.match(
-                    /^(Small|Medium|Large)\s*-\s*₱([\d,.]+)$/
-                );
+                checked.forEach(function (input) {
+                    const match = input.value.match(
+                        /^(Small|Medium|Large)\s*-\s*₱([\d,.]+)$/
+                    );
 
-                if (!match) return;
+                    if (!match) return;
 
-                cart.push({
-                    name: name,
-                    size: match[1],
-                    price: Number(match[2].replace(/,/g, '')),
-                    quantity: 1
+                    cart.push({
+                        name: name,
+                        size: match[1],
+                        price: Number(match[2].replace(/,/g, '')),
+                        quantity: 1
+                    });
+
+                    addedCount++;
                 });
 
-                addedCount++;
-            });
+                if (addedCount === 0) {
+                    alert('Could not read the selected pizza size.');
+                    return;
+                }
 
-            if (addedCount === 0) {
-                alert('Could not read the selected pizza size.');
-                return;
-            }
+                try {
+                    localStorage.setItem('pizzaCart', JSON.stringify(cart));
+                    button.textContent = '✓ ADDED TO CART';
 
-            try {
-                localStorage.setItem('pizzaCart', JSON.stringify(cart));
-
-                button.textContent = '✓ ADDED TO CART';
-                button.classList.add('added-to-cart');
-                button.setAttribute('aria-live', 'polite');
-
-                setTimeout(function () {
+                    setTimeout(function () {
+                        button.textContent = originalText;
+                    }, 1500);
+                } catch (error) {
+                    alert('Could not save your cart. Check your browser storage settings.');
                     button.textContent = originalText;
-                    button.classList.remove('added-to-cart');
-                }, 1500);
-
-            } catch (error) {
-                alert('Could not save your cart. Please check your browser storage settings.');
-                button.textContent = originalText;
-                button.classList.remove('added-to-cart');
-            }
+                }
+            });
         });
-    });
-});
-</script>
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializePizzaCart, { once: true });
+    } else {
+        initializePizzaCart();
+    }
+    </script>
+
 
 
 {% endblock %}
