@@ -1,21 +1,338 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register | La Mia Pizzeria{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        .register-page {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: #111111;
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px;
+            background: #1b1b1b;
+            border: 1px solid #3a2929;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.30);
+        }
+
+        .register-brand {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .register-brand h1 {
+            color: #f4ebdd;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .register-brand span {
+            color: #a52a32;
+        }
+
+        .register-brand p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .register-card h2 {
+            color: #f4ebdd;
+            text-align: center;
+            font-size: 23px;
+            margin-bottom: 25px;
+        }
+
+        .register-card label {
+            display: block;
+            color: #e8dfd2;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .register-card input:not([type="checkbox"]) {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            background: #111111;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .register-card input:focus {
+            border-color: #a52a32;
+            box-shadow: 0 0 0 2px rgba(165, 42, 50, 0.2);
+        }
+
+        .terms-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin: 18px 0 22px;
+        }
+
+        .terms-row input {
+            accent-color: #a52a32;
+            flex-shrink: 0;
+        }
+
+        .terms-row label {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .terms-link {
+            color: #d6aa78;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            text-decoration: underline;
+            font: inherit;
+        }
+
+        .terms-link:hover {
+            color: #f4ebdd;
+        }
+
+        .register-card ul,
+        .register-card .invalid-feedback {
+            color: #ff8a8a;
+            font-size: 13px;
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 14px;
+            background: #8b2026;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .register-button:hover {
+            background: #a52a32;
+        }
+
+        .register-footer {
+            text-align: center;
+            color: #aaa;
+            font-size: 13px;
+            margin-top: 22px;
+        }
+
+        .register-footer a {
+            color: #d6aa78;
+            text-decoration: none;
+        }
+
+        .register-footer a:hover {
+            color: #f4ebdd;
+            text-decoration: underline;
+        }
+
+        /* Terms popup */
+        .terms-modal {
+            width: min(90%, 600px);
+            max-height: 80vh;
+            padding: 0;
+            border: 1px solid #594040;
+            border-radius: 14px;
+            background: #1b1b1b;
+            color: #f4ebdd;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+        }
+
+        .terms-modal::backdrop {
+            background: rgba(0, 0, 0, 0.82);
+        }
+
+        .terms-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            background: #241919;
+            border-bottom: 1px solid #493030;
+        }
+
+        .terms-modal-header h2 {
+            margin: 0;
+            color: #f4ebdd;
+            font-size: 21px;
+        }
+
+        .terms-close {
+            background: none;
+            border: none;
+            color: #f4ebdd;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        .terms-content {
+            padding: 24px;
+            max-height: 55vh;
+            overflow-y: auto;
+            line-height: 1.7;
+        }
+
+        .terms-content h3 {
+            color: #d6aa78;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .terms-content p {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .terms-modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #493030;
+            text-align: right;
+        }
+
+        .terms-done {
+            padding: 10px 22px;
+            background: #8b2026;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .terms-done:hover {
+            background: #a52a32;
+        }
+
+        @media (max-width: 480px) {
+            .register-card {
+                padding: 30px 22px;
+            }
+
+            .register-brand h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<div class="register-page">
+    <div class="register-card">
 
-    {{ form_errors(registrationForm) }}
+        <div class="register-brand">
+            <h1>LA MIA <span>PIZZERIA</span></h1>
+            <p>Authentic Italian Taste, Made with Love</p>
+        </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstName) }}
-        {{ form_row(registrationForm.lastName) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <h2>Create Your Account</h2>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+
+            {{ form_row(registrationForm.firstName) }}
+            {{ form_row(registrationForm.lastName) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+
+            <div class="terms-row">
+                {{ form_widget(registrationForm.agreeTerms) }}
+
+                <span style="color: #e8dfd2;">
+                    I agree to the
+                    <button type="button" class="terms-link"
+                            onclick="document.getElementById('termsModal').showModal()">
+                        Terms and Conditions
+                    </button>
+                </span>
+            </div>
+
+            {{ form_errors(registrationForm.agreeTerms) }}
+
+            <button type="submit" class="register-button">
+                REGISTER
+            </button>
+
+        {{ form_end(registrationForm) }}
+
+        <div class="register-footer">
+            Already have an account?
+            <a href="{{ path('app_login') }}">Login here</a>
+        </div>
+
+    </div>
+</div>
+
+<dialog class="terms-modal" id="termsModal">
+    <div class="terms-modal-header">
+        <h2>Terms and Conditions</h2>
+        <button type="button" class="terms-close"
+                onclick="document.getElementById('termsModal').close()"
+                aria-label="Close">&times;</button>
+    </div>
+
+    <div class="terms-content">
+        <p><strong>Welcome to La Mia Pizzeria!</strong></p>
+
+        <p>By creating an account and using our website, you agree to the following terms.</p>
+
+        <h3>1. Account Registration</h3>
+        <p>Customers must provide accurate and complete information when creating an account. Please keep your account details up to date.</p>
+
+        <h3>2. Account Security</h3>
+        <p>You are responsible for keeping your password confidential and for activities performed through your account.</p>
+
+        <h3>3. Orders and Pricing</h3>
+        <p>Please review your selected products, quantities, sizes, and displayed prices before submitting an order. Orders are subject to confirmation by La Mia Pizzeria.</p>
+
+        <h3>4. Payments</h3>
+        <p>Customers must use the payment methods made available during the ordering process and provide accurate payment information when required.</p>
+
+        <h3>5. Delivery Information</h3>
+        <p>Customers are responsible for providing a complete and accurate delivery address and contact number. Delivery availability and arrangements depend on the options provided during checkout.</p>
+
+        <h3>6. Cancellations and Order Changes</h3>
+        <p>If you need to change or cancel an order, please contact La Mia Pizzeria as soon as possible. Changes and cancellations depend on the order's preparation and fulfillment status.</p>
+
+        <h3>7. Privacy and Personal Information</h3>
+        <p>Information collected through your account and orders should be used only for legitimate purposes such as account management, order processing, customer support, and related services, subject to our applicable privacy obligations.</p>
+
+        <h3>8. Acceptance of Terms</h3>
+        <p>By checking the agreement box during registration, you confirm that you have read and agree to these Terms and Conditions.</p>
+    </div>
+
+    <div class="terms-modal-footer">
+        <button type="button" class="terms-done"
+                onclick="document.getElementById('termsModal').close()">
+            Close
+        </button>
+    </div>
+</dialog>
+
 {% endblock %}
+

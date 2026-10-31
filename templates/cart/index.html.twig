@@ -39,12 +39,15 @@
                         <strong id="cart-total">₱0.00</strong>
                     </div>
 
-                    <a href="{{ path('app_menu') }}" class="continue-shopping">
-                        Continue Shopping
-                        
-                        <a href="{{ path('app_checkout') }}" class="checkout-button">Proceed to Checkout</a>
+                    <div class="cart-actions">
+                        <a href="{{ path('app_menu') }}" class="continue-shopping">
+                            Continue Shopping
+                        </a>
 
-                    </a>
+                        <a href="{{ path('app_checkout') }}" class="checkout-button">
+                            Proceed to Checkout
+                        </a>
+                    </div>
                 </div>
 
             </div>
@@ -190,6 +193,30 @@
 #cart-total {
     color: #66bb6a;
     font-size: 22px;
+}
+
+.cart-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.checkout-button {
+    display: inline-block;
+    padding: 11px 18px;
+    background-color: #8b2026;
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.checkout-button:hover {
+    background-color: #a52a32;
+    color: #fff;
+    text-decoration: none;
 }
 
 @media (max-width: 600px) {
