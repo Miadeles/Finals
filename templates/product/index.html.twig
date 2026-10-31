@@ -16,9 +16,24 @@
             margin-right: 4px;
         }
 
+        .product-table {
+            width: 100%;
+            table-layout: auto;
+        }
+
         .product-table th,
         .product-table td {
             vertical-align: middle;
+            white-space: normal;
+        }
+
+        .product-table td.description-cell {
+            min-width: 180px;
+            max-width: 280px;
+            overflow-wrap: break-word;
+        }
+
+        .product-table td:last-child {
             white-space: nowrap;
         }
 
@@ -31,6 +46,11 @@
 
 {% block body %}
     <div class="dashboard-container">
+
+        <aside class="sidebar">
+            {% include 'sidebar/index.html.twig' %}
+        </aside>
+
         <main class="dashboard-content">
             <h1 class="mb-4">Product index</h1>
 

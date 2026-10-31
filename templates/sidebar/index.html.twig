@@ -9,6 +9,23 @@
             Dashboard
         </a>
 
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_product_index') }}"
+               class="{{ app.request.attributes.get('_route') starts with 'app_product_' ? 'active' : '' }}">
+                Product Management
+            </a>
+
+            <a href="{{ path('app_category_index') }}"
+               class="{{ app.request.attributes.get('_route') starts with 'app_category_' ? 'active' : '' }}">
+                Category Management
+            </a>
+
+            <a href="{{ path('admin_orders') }}"
+               class="{{ app.request.attributes.get('_route') starts with 'admin_orders' ? 'active' : '' }}">
+                Manage Orders
+            </a>
+        {% endif %}
+
         <a href="{{ path('app_home') }}"
            class="{{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }}">
             Home
