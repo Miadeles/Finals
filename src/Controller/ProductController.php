@@ -14,13 +14,35 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/product')]
 final class ProductController extends AbstractController
 {
-    #[Route(name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
-    {
+    
+    #[Route(name: 'app_product_index', methods: ['GET', 'POST'])]
+    public function index(
+        ProductRepository $productRepository,
+        Request $request,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $product = new Product();
+
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            return $this->redirectToRoute(
+                'app_product_index',
+                [],
+                Response::HTTP_SEE_OTHER
+            );
+        }
+
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
+
 
     #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
