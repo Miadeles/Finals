@@ -1,35 +1,78 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Category index{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .category-table th,
+        .category-table td {
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .action-btn {
+            width: 70px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin-right: 4px;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-    <h1>Category index</h1>
+    <div class="dashboard-container">
+        <main class="dashboard-content">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <h1 class="mb-4">Category Management</h1>
 
-    <a href="{{ path('app_category_new') }}">Create new</a>
+            <a href="{{ path('app_category_new') }}"
+               class="btn btn-primary mb-3">
+                Create New Category
+            </a>
+
+            <div class="table-responsive">
+                <table class="table table-dark table-striped table-hover category-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Category Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.id }}</td>
+                            <td>{{ category.name }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-info action-btn"
+                                   href="{{ path('app_category_show', {'id': category.id}) }}">
+                                    Show
+                                </a>
+
+                                <a class="btn btn-sm btn-warning action-btn"
+                                   href="{{ path('app_category_edit', {'id': category.id}) }}">
+                                    Edit
+                                </a>
+
+                                {{ include('category/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">No records found.</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
 {% endblock %}

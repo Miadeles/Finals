@@ -1,4 +1,19 @@
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+    <div class="form-group">
+        {{ form_label(form.name, 'Category Name') }}
+        {{ form_widget(form.name, {
+            'attr': {
+                'class': 'form-control',
+                'placeholder': 'Enter category name'
+            }
+        }) }}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        {{ button_label|default('Save Category') }}
+    </button>
+
 {{ form_end(form) }}
